@@ -30,7 +30,7 @@ def drawing_list(number_list, isDone):
             count += 1
         pygame.display.flip()
         clock.tick(60)
-        time.sleep(0.01)
+        time.sleep(0.1)
         if isDone == False:
             running = False
 
@@ -119,9 +119,6 @@ def drawing_merge_sort(number_list):
             right = m_list[len(m_list) // 2 :]
             merge_sort(left)
             merge_sort(right)
-            drawing_list(left, False)
-            drawing_list(right, False)
-            drawing_list(m_list, False)
 
             i = 0
             j = 0
@@ -129,25 +126,32 @@ def drawing_merge_sort(number_list):
             while i < len(left) and j < len(right):
                 if left[i] < right[j]:
                     m_list[k] = left[i]
+                    drawing_list(m_list, False)
                     i += 1
                 else:
                     m_list[k] = right[j]
+                    drawing_list(m_list, False)
                     j += 1
                 k += 1
 
             while i < len(left):
                 m_list[k] = left[i]
+                drawing_list(m_list, False)
                 i += 1
                 k += 1
 
             while j < len(right):
                 m_list[k] = right[j]
+                drawing_list(m_list, False)
                 j += 1
                 k += 1
+            drawing_list(left + right, False)
+        drawing_list(m_list, False)
         return m_list
 
-    drawing_list(number_list, False)
+    # drawing_list(number_list, False)
     sorted_list = merge_sort(number_list)
+
     drawing_list(sorted_list, True)
 
 
